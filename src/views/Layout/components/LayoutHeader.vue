@@ -1,3 +1,16 @@
+<script setup>
+import { ref } from 'vue';
+import {LayoutService} from '@/api/Layout'
+import { onMounted } from 'vue';
+const LayoutList = ref([])
+const getLayout = async() =>{
+    const res = await LayoutService()
+    LayoutList.value = res.result
+}
+onMounted(() => {
+    getLayout()
+})
+</script>
 <template>
 <header class="sp-header">
     <div class="container">
@@ -5,12 +18,10 @@
             <router-link to="/">小兔鲜</router-link>
         </h1>
         <ul class="sp-header-nav">
-            <li class="home">
-                <router-link to="/">首页</router-link>
+            <li class="home" v-for="item in LayoutList" :key="item.id">
+                <router-link to="/">{{ item.name }}</router-link>
             </li>
-            <li><router-link to="/">居家</router-link></li>
-            <li><router-link to="/">美食</router-link></li>
-            <li><router-link to="/">服饰</router-link></li>
+            
         </ul>
         <div class="search">
         <i class="iconfont icon-search"></i>
