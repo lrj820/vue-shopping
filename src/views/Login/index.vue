@@ -1,3 +1,3 @@
 <template>
-我是首页s
-</template>
+    我是登录页
+  </template>
