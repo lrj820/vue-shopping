@@ -33,7 +33,8 @@ const CategoryStore = useCategoryStore()
  </template>
  <style scoped lang="scss">
 .container {
-  
+    position: relative;
+  z-index: 99;
 
   .menu {
     background: rgba(0, 0, 0, 0.8);
