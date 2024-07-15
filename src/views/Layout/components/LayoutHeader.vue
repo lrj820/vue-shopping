@@ -1,15 +1,6 @@
 <script setup>
-import { ref } from 'vue';
-import {LayoutService} from '@/api/Layout'
-import { onMounted } from 'vue';
-const LayoutList = ref([])
-const getLayout = async() =>{
-    const res = await LayoutService()
-    LayoutList.value = res.result
-}
-onMounted(() => {
-    getLayout()
-})
+import { useCategoryStore } from '@/stores/category';
+const categoryStore = useCategoryStore()
 </script>
 <template>
 <header class="sp-header">
@@ -18,7 +9,7 @@ onMounted(() => {
             <router-link to="/">小兔鲜</router-link>
         </h1>
         <ul class="sp-header-nav">
-            <li class="home" v-for="item in LayoutList" :key="item.id">
+            <li class="home" v-for="item in categoryStore.LayoutList" :key="item.id">
                 <router-link to="/">{{ item.name }}</router-link>
             </li>
             
