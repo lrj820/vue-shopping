@@ -11,7 +11,8 @@ onMounted(() => categoryStore.getLayout())
 <template>
 <LayoutNav />
 <LayoutHeader />
+<router-view></router-view>
 <layout-footer />
 <LayoutSticky />
-<router-view></router-view>
+
 </template>
