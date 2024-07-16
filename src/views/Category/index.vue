@@ -4,10 +4,11 @@ import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import {BannerService} from '@/api/Home'
 import GoodsItem from '@/views/Home/components/Goodsitem.vue'
+import { onBeforeRouteUpdate } from 'vue-router';
 const router = useRoute()
 const categoryList = ref([])
-const getcategory = async() =>{
-    const res = await categoryService(router.params.id)
+const getcategory = async(id =router.params.id) =>{
+    const res = await categoryService(id)
     categoryList.value = res.result
 }
 onMounted(() =>getcategory())
@@ -19,6 +20,9 @@ const getBanner = async() =>{
 }
 onMounted(() => {
     getBanner()
+})
+onBeforeRouteUpdate((to) => {
+    getcategory(to.params.id)
 })
 </script>
 
