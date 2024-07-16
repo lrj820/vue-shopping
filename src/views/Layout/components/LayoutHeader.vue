@@ -10,7 +10,7 @@ const categoryStore = useCategoryStore()
         </h1>
         <ul class="sp-header-nav">
             <li class="home" v-for="item in categoryStore.LayoutList" :key="item.id">
-                <router-link :to="`/category/${item.id}`">{{ item.name }}</router-link>
+                <router-link active-class="active" :to="`/category/${item.id}`">{{ item.name }}</router-link>
             </li>
             
         </ul>
