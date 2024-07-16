@@ -3,7 +3,7 @@ import { ref,onMounted } from 'vue';
 import {BannerService} from '@/api/Home'
 const BannerList = ref([])
 const getBanner = async() =>{
-    const res = await BannerService()
+    const res = await BannerService(2)
     BannerList.value = res.result
     console.log(BannerList.value)
 }

@@ -2,6 +2,7 @@
 import {categoryService} from '@/api/Category'
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import {BannerService} from '@/api/Home'
 const router = useRoute()
 const categoryList = ref([])
 const getcategory = async() =>{
@@ -9,6 +10,15 @@ const getcategory = async() =>{
     categoryList.value = res.result
 }
 onMounted(() =>getcategory())
+const BannerList = ref([])
+const getBanner = async() =>{
+    const res = await BannerService({distributionSite : '2'})
+    BannerList.value = res.result
+    console.log(BannerList.value)
+}
+onMounted(() => {
+    getBanner()
+})
 </script>
 
 <template>
@@ -21,6 +31,13 @@ onMounted(() =>getcategory())
           <el-breadcrumb-item>{{ categoryList.name }}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
+      <div class="sp-banner">
+    <el-carousel v-if="BannerList.length > 0" height="500px">
+      <el-carousel-item v-for="item in BannerList" :key="item.id">
+        <img :src="item.imgUrl" alt="">
+      </el-carousel-item>
+    </el-carousel>
+   </div>
     </div>
   </div>
 </template>
@@ -102,6 +119,18 @@ onMounted(() =>getcategory())
 
   .bread-container {
     padding: 25px 0;
+  }
+}
+.sp-banner{
+width: 1240px;
+height: 500px;
+left: 0;
+top: 0;
+
+
+img {
+    width: 100%;
+    height: 500px;
   }
 }
 </style>
