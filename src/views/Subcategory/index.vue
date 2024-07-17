@@ -28,6 +28,20 @@ const getGoods = async() =>{
 onMounted(() => {
     getGoods()
 })
+const tabChange = () =>{
+   reqList.value.page = 1
+    getGoods()
+}
+const disabled = ref(false)
+const load =async() =>{
+    reqList.value.page++
+    const res = await getGoodsService(reqList.value)
+    goodsList.value = [...goodsList.value,...res.result.items]
+    if(res.result.items.length ===0){
+        disabled.value=true
+    }
+}
+
 
 </script>
 
@@ -43,7 +57,7 @@ onMounted(() => {
       </el-breadcrumb>
     </div>
     <div class="sub-container">
-      <el-tabs>
+      <el-tabs v-model="reqList.sortField" @tab-change="tabChange" v-infinite-scroll="load" :infinite-scroll-disabled="disabled">
         <el-tab-pane label="最新商品" name="publishTime"></el-tab-pane>
         <el-tab-pane label="最高人气" name="orderNum"></el-tab-pane>
         <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>
