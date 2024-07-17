@@ -1,13 +1,14 @@
 <script setup>
 import { ref } from 'vue';
-import {getuserService} from '@/api/use'
 import { ElMessage } from 'element-plus'
 import 'element-plus/theme-chalk/el-message.css'
 import { useRouter } from 'vue-router';
+import { useUserStore } from '@/stores/use';
+const userStore = useUserStore()
 const router = useRouter()
 const form = ref({
-  account:'',
-  password:'',
+  account:'12345678',
+  password:'123456',
   agree:true
 })
 const rules = {
@@ -35,8 +36,7 @@ const Dologin =() =>{
   const {account,password} = form.value
   formRef.value.validate(async(vaild) => {
     if(vaild){
-      const res = await getuserService({account,password})
-      console.log(res)
+      await userStore.getUserInfo({account,password})
       ElMessage({ type: 'success', message: '登录成功' })
       // 2. 跳转首页
       router.replace({ path: '/' })
