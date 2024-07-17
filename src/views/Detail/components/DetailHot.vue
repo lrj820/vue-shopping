@@ -1,13 +1,13 @@
 <script setup>
 import {getDetailHotService} from '@/api/Detail'
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 const hotList = ref([])
 const route = useRoute()
 const getDetailHot =async() =>{
     const res = await getDetailHotService({
         id:route.params.id,
-        type:1
+        type:props.hotType
     })
     hotList.value = res.result
     console.log(hotList.value)
@@ -15,12 +15,22 @@ const getDetailHot =async() =>{
 onMounted(() => {
   getDetailHot()  
 })
+const props = defineProps({
+    hotType:{
+        type:Number
+    }
+})
+const TYPEMAp = {
+    1:'24小时热榜',
+    2:'周热榜'
+}
+const title = computed(()=> TYPEMAp[props.hotType])
 </script>
 
 
 <template>
   <div class="goods-hot">
-    <h3>周日榜单</h3>
+    <h3>{{ title }}</h3>
     <!-- 商品区块 -->
     <RouterLink to="/" class="goods-item" v-for="item in hotList" :key="item.id">
       <img :src="item.picture" alt="" />
