@@ -4,3 +4,13 @@ export const getGoodsService = (id) =>instance.get('/goods',{
         id
     }
 })
+export const getDetailHotService = ({ id, type, limit = 3 }) => {
+    return instance({
+      url:'/goods/hot',
+      params:{
+        id, 
+        type, 
+        limit
+      }
+    })
+  }
