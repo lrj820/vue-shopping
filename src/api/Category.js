@@ -18,4 +18,6 @@ export const getCategoryFilterAPI = (id) => {
       }
     })
   }
+
+export const getGoodsService = (data) =>instance.post('/category/goods/temporary',data)
   
