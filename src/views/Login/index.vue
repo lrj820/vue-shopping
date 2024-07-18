@@ -7,7 +7,7 @@ import { useUserStore } from '@/stores/use';
 const userStore = useUserStore()
 const router = useRouter()
 const form = ref({
-  account:'12345678',
+  account:'cdshi0006',
   password:'123456',
   agree:true
 })
