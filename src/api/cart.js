@@ -11,3 +11,4 @@ export const delCartAPI = (ids) => {
       }
     })
   }
+  export const mergeCartAPI =(data) =>instance.post('/member/cart/merge',data)
