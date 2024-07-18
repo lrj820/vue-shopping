@@ -2,6 +2,7 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import 'element-plus/theme-chalk/el-message.css'
 import {useUserStore} from '@/stores/use'
+import router from '@/router'
 const instance = axios.create({
     baseURL: 'http://pcapi-xiaotuxian-front-devtest.itheima.net',
     timeout: 5000
@@ -22,6 +23,11 @@ const instance = axios.create({
       type:'warning',
       message:e.response.data.msg
     })
+    const useStore = useUserStore()
+    if(e.response.status ===401) {
+      useStore.clearUserinfo()
+      router.push('/login')
+    }
     return Promise.reject(e)
   })
 
