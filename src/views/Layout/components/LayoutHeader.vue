@@ -1,5 +1,6 @@
 <script setup>
-import { useCategoryStore } from '@/stores/category';
+import { useCategoryStore } from '@/stores/category'
+import HeadCart from '@/views/Layout/components/HeadCart.vue'
 const categoryStore = useCategoryStore()
 </script>
 <template>
@@ -18,6 +19,7 @@ const categoryStore = useCategoryStore()
         <i class="iconfont icon-search"></i>
         <input type="text" placeholder="搜一搜">
       </div>
+      <HeadCart />
     </div>
 </header>
 </template>

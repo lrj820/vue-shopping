@@ -20,7 +20,7 @@ onMounted(() => {
 let skuObj = {}
 const Skuchange = (sku) =>{
     console.log(sku)
-    skuObj.value = sku
+    skuObj = sku
 }
 const count = ref(1)
 const countChange = (count) =>{
@@ -33,7 +33,7 @@ const addCart =() =>{
             name:DetailList.value.name,
             picture:DetailList.value.mainPictures[0],
             price:DetailList.value.price,
-            count:DetailList.value,
+            count:count.value,
             skuId:skuObj.skuId,
             attrsText:skuObj.specsText,
             selected:true
