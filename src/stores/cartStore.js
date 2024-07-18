@@ -24,6 +24,15 @@ const singleCheck = (skuId, selected) => {
     const item = cartList.value.find((item) => item.skuId === skuId)
     item.selected = selected
   }
+  // 全选功能action
+const allCheck = (selected) => {
+    // 把cartList中的每一项的selected都设置为当前的全选框状态
+    cartList.value.forEach(item => item.selected = selected)
+  }
+  
+  
+  // 是否全选计算属性
+  const isAll = computed(() => cartList.value.every((item) => item.selected))
 const allCount = computed(() => cartList.value.reduce((a,c) => a + c.count,0))
 const allPrice = computed(() => cartList.value.reduce((a,c) => a + c.count * c.price,0))
     return{
@@ -32,7 +41,9 @@ const allPrice = computed(() => cartList.value.reduce((a,c) => a + c.count * c.p
         allCount,
         addcart,
         delCart,
-        singleCheck
+        singleCheck,
+        allCheck,
+        isAll
     }
 },{
     persist: true,
