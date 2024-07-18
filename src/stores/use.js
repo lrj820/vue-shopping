@@ -12,10 +12,14 @@ export const useUserStore = defineStore('user', () => {
     const res = await getuserService({ account, password })
     userInfo.value = res.result
   }
+  const clearUserinfo = () =>{
+    userInfo.value = {}
+  }
   // 3. 以对象的格式把state和action return
   return {
     getUserInfo,
-    userInfo
+    userInfo,
+    clearUserinfo
   }
 }, {
   persist: true,
