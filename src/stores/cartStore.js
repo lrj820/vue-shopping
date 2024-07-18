@@ -51,6 +51,10 @@ const allCheck = (selected) => {
     // 把cartList中的每一项的selected都设置为当前的全选框状态
     cartList.value.forEach(item => item.selected = selected)
   }
+
+  const clearCart = () =>{
+    cartList.value = []
+  }
   
   
   // 是否全选计算属性
@@ -71,7 +75,8 @@ const selectedPrice = computed(() => cartList.value.filter(item => item.selected
         allCheck,
         isAll,
         selectedCount,
-        selectedPrice
+        selectedPrice,
+        clearCart
     }
 },{
     persist: true,
