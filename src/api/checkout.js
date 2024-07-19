@@ -4,3 +4,5 @@ export const getCheckoutInfoAPI = () => {
       url:'/member/order/pre'
     })
   }
+
+export const createOrderAPI = (data) => instance.post('/member/order',data)
